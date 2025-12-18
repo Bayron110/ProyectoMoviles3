@@ -34,7 +34,7 @@ class _LoginState extends State<Login> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              'https://i.postimg.cc/P5NBRkGz/portada.jpg', // <- tu link de imagen aquí
+              'https://i.postimg.cc/SN6KGWyf/preciosas-nubes-arte-digital-23-2151105777.jpg',
             ),
             fit: BoxFit.cover,
           ),
@@ -81,7 +81,7 @@ class _LoginState extends State<Login> {
               ElevatedButton(
                 onPressed: () => irHome(context),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: const Color.fromARGB(255, 234, 196, 196),
                   minimumSize: const Size(double.infinity, 45),
                 ),
                 child: const Text('Entrar'),
@@ -91,7 +91,7 @@ class _LoginState extends State<Login> {
               ElevatedButton(
                 onPressed: () => iraRegistro(context),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: const Color.fromARGB(255, 238, 197, 197),
                   minimumSize: const Size(double.infinity, 45),
                 ),
                 child: const Text('Registrase'),

@@ -11,12 +11,12 @@ class RecomendadosSection extends StatelessWidget {
   const RecomendadosSection({super.key});
 
   final List<String> images = const [
-    "https://m.media-amazon.com/images/M/MV5BYzU1NjYzNWEtYjJjYi00MTc4LTliZDAtZmU1ZTkwNzg5NzVkXkEyXkFqcGc@._V1_.jpg",
-    "https://upload.wikimedia.org/wikipedia/en/1/16/To_be_Hero_X_key_art.png",
-    "https://static.wikia.nocookie.net/wiki-doblaje-espana/images/4/45/Witch_Watch-Poster.png",
-    "https://upload.wikimedia.org/wikipedia/en/9/9b/Dragon_Ball_Daima.png",
-    "https://a.storyblok.com/f/178900/1064x1596/d60df0cec9/re-zero-season-3-teaser-visual.png",
-    "https://images.justwatch.com/poster/324676039/s718/sakamoto-days.jpg",
+    "https://i.postimg.cc/pdyKm0DR/MV5BYz-U1Nj-Yz-NWEt-Yj-Jj-Yi00MTc4LTli-ZDAt-Zm-U1ZTkw-Nzg5Nz-Vk-Xk-Ey-Xk-Fqc-Gc-V1.jpg",
+    "https://i.postimg.cc/NF8H3Zw7/To-be-Hero-X-key-art.png",
+    "https://i.postimg.cc/gJHcmpnR/latest-cb-20250427084642-path-prefix-es.webp",
+    "https://i.postimg.cc/JhwRX0X5/Dragon-Ball-Daima.png",
+    "https://i.postimg.cc/HnFhNcd2/re-zero-season-3-teaser-visual.png",
+    "https://i.postimg.cc/3Jgsq10k/sakamoto-days.jpg",
   ];
 
   final List<String> titles = const [

@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: NetworkImage(
-            "https://www.clarin.com/img/2024/03/25/F8tTKhIEa_2000x1500__1.jpg",
+            "https://i.postimg.cc/MZ934L9Z/F8t-TKh-IEa-2000x1500-1.jpg",
           ),
           fit: BoxFit.cover,
         ),
@@ -26,8 +26,9 @@ class HomeScreen extends StatelessWidget {
             child: Text(
               "HoshiPlay",
               style: TextStyle(
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
-                letterSpacing: 2,
+                letterSpacing: 3,
               ),
             ),
           ),

@@ -21,7 +21,7 @@ Widget Vista() {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/ab/Volumen_1_Vigilantes.png/revision/latest?cb=20210104051630&path-prefix=es"
+              "https://i.postimg.cc/Qx54tMXM/latest-cb-20210104051630-path-prefix-es.webp"
             ),
             fit: BoxFit.contain, 
           ),

@@ -6,11 +6,11 @@ class TopSection extends StatelessWidget {
   const TopSection({super.key});
 
   final List<String> topImages = const [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr_cmzkkrXOT0VCkmvSSvRP2tJ5pPRIAgI2Q&s",
-    "https://static.wikia.nocookie.net/jujutsu-kaisen/images/f/f6/JJK_New_Key_Visual.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwjtbHiFVqFWGc-D1zpM2hHpsd0-0SCW_b2Q&s",
-    "https://m.media-amazon.com/images/M/MV5BYmUzMTk5MGQtZDg5Yy00MWEzLWIzNjUtNWIyMjFjODhiYjcyXkEyXkFqcGc@._V1_.jpg",
-    "https://m.media-amazon.com/images/M/MV5BN2EzYTYyNGUtOTE2ZS00ZTljLWE5M2EtZDViYjhmYzgwNThhXkEyXkFqcGc@._V1_.jpg",
+    "https://i.postimg.cc/qvDjD6wK/s-l1200.jpg",
+    "https://i.postimg.cc/prkD931k/518168.jpg",
+    "https://i.postimg.cc/8CWMd708/images-q-tbn-ANd9Gc-Qwjtb-Hi-FVq-FWGc-D1zp-M2h-Hpsd0-0SCW-b2Q-s.jpg",
+    "https://i.postimg.cc/50bYwnzC/MV5BYm-Uz-MTk5MGQt-ZDg5Yy00MWEz-LWIz-Nj-Ut-NWIy-Mj-Fj-ODhi-Yjcy-Xk-Ey-Xk-Fqc-Gc-V1.jpg",
+    "https://i.postimg.cc/VvHJPwVT/MV5BN2Ez-YTYy-NGUt-OTE2ZS00ZTlj-LWE5M2Et-ZDVi-Yjhm-Yzgw-NThh-Xk-Ey-Xk-Fqc-Gc-V1.jpg",
   ];
 
   @override
