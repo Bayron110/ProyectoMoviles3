@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:proyecto_moviles3/screens/homes.dart';
 import 'package:proyecto_moviles3/screens/login.dart';
-//import 'package:proyecto_moviles3/screens/registro.dart';
 
 void main() {
   runApp(const HoshiPlay());
