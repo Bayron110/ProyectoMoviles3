@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: const SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
