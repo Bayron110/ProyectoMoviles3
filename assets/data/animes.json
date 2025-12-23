@@ -1,0 +1,349 @@
+{
+    "top_animes": [
+        {
+            "nombre": "Naruto",
+            "temporadas": 2,
+            "edad_recomendada": "13+",
+            "año_creacion": 2002,
+            "sinopsis": "Naruto Uzumaki sueña con convertirse en Hokage mientras enfrenta enemigos y protege a su aldea.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Aventura"
+            ],
+            "creador": "Masashi Kishimoto",
+            "estudio": "Studio Pierrot",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "One Piece",
+            "temporadas": 1,
+            "edad_recomendada": "13+",
+            "año_creacion": 1999,
+            "sinopsis": "Monkey D. Luffy navega con su tripulación en busca del legendario tesoro One Piece.",
+            "categoria": [
+                "Acción",
+                "Aventura",
+                "Shonen"
+            ],
+            "creador": "Eiichiro Oda",
+            "estudio": "Toei Animation",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Attack on Titan",
+            "temporadas": 4,
+            "edad_recomendada": "16+",
+            "año_creacion": 2013,
+            "sinopsis": "La humanidad lucha contra titanes gigantes que amenazan con destruirla.",
+            "categoria": [
+                "Acción",
+                "Drama",
+                "Shonen"
+            ],
+            "creador": "Hajime Isayama",
+            "estudio": "Wit Studio / MAPPA",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Dragon Ball Z",
+            "temporadas": 1,
+            "edad_recomendada": "13+",
+            "año_creacion": 1989,
+            "sinopsis": "Goku y sus amigos defienden la Tierra de poderosos enemigos intergalácticos.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Artes Marciales"
+            ],
+            "creador": "Akira Toriyama",
+            "estudio": "Toei Animation",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Death Note",
+            "temporadas": 1,
+            "edad_recomendada": "16+",
+            "año_creacion": 2006,
+            "sinopsis": "Light Yagami encuentra un cuaderno que le permite matar a cualquiera cuyo nombre escriba.",
+            "categoria": [
+                "Suspenso",
+                "Psicológico",
+                "Shonen"
+            ],
+            "creador": "Tsugumi Ohba",
+            "estudio": "Madhouse",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Fullmetal Alchemist: Brotherhood",
+            "temporadas": 1,
+            "edad_recomendada": "15+",
+            "año_creacion": 2009,
+            "sinopsis": "Los hermanos Elric buscan la piedra filosofal tras perder partes de su cuerpo en un ritual fallido.",
+            "categoria": [
+                "Acción",
+                "Aventura",
+                "Shonen"
+            ],
+            "creador": "Hiromu Arakawa",
+            "estudio": "Bones",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "My Hero Academia",
+            "temporadas": 6,
+            "edad_recomendada": "13+",
+            "año_creacion": 2016,
+            "sinopsis": "En un mundo lleno de superhéroes, Izuku Midoriya busca convertirse en el mejor héroe.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Superhéroes"
+            ],
+            "creador": "Kohei Horikoshi",
+            "estudio": "Bones",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Demon Slayer",
+            "temporadas": 3,
+            "edad_recomendada": "15+",
+            "año_creacion": 2019,
+            "sinopsis": "Tanjiro Kamado lucha contra demonios para salvar a su hermana Nezuko.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Sobrenatural"
+            ],
+            "creador": "Koyoharu Gotouge",
+            "estudio": "ufotable",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Bleach",
+            "temporadas": 16,
+            "edad_recomendada": "13+",
+            "año_creacion": 2004,
+            "sinopsis": "Ichigo Kurosaki se convierte en shinigami para proteger a los humanos de espíritus malignos.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Sobrenatural"
+            ],
+            "creador": "Tite Kubo",
+            "estudio": "Studio Pierrot",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Sword Art Online",
+            "temporadas": 4,
+            "edad_recomendada": "13+",
+            "año_creacion": 2012,
+            "sinopsis": "Jugadores atrapados en un MMORPG deben sobrevivir para escapar.",
+            "categoria": [
+                "Acción",
+                "Aventura",
+                "Isekai"
+            ],
+            "creador": "Reki Kawahara",
+            "estudio": "A-1 Pictures",
+            "basado_en": "Novela ligera"
+        },
+        {
+            "nombre": "Tokyo Ghoul",
+            "temporadas": 4,
+            "edad_recomendada": "17+",
+            "año_creacion": 2014,
+            "sinopsis": "Kaneki se convierte en mitad ghoul y debe adaptarse a un mundo oscuro.",
+            "categoria": [
+                "Acción",
+                "Seinen",
+                "Sobrenatural"
+            ],
+            "creador": "Sui Ishida",
+            "estudio": "Pierrot",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Hunter x Hunter",
+            "temporadas": 6,
+            "edad_recomendada": "13+",
+            "año_creacion": 1999,
+            "sinopsis": "Gon Freecss busca convertirse en cazador y encontrar a su padre.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Aventura"
+            ],
+            "creador": "Yoshihiro Togashi",
+            "estudio": "Madhouse",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Neon Genesis Evangelion",
+            "temporadas": 1,
+            "edad_recomendada": "16+",
+            "año_creacion": 1995,
+            "sinopsis": "Adolescentes pilotan mechas para salvar a la humanidad de misteriosos seres llamados ángeles.",
+            "categoria": [
+                "Mecha",
+                "Psicológico",
+                "Drama"
+            ],
+            "creador": "Hideaki Anno",
+            "estudio": "Gainax",
+            "basado_en": "Original"
+        },
+        {
+            "nombre": "Fairy Tail",
+            "temporadas": 9,
+            "edad_recomendada": "13+",
+            "año_creacion": 2009,
+            "sinopsis": "Natsu Dragneel y sus amigos viven aventuras en el gremio Fairy Tail.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Fantasía"
+            ],
+            "creador": "Hiro Mashima",
+            "estudio": "A-1 Pictures / Satelight",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "JoJo's Bizarre Adventure",
+            "temporadas": 6,
+            "edad_recomendada": "16+",
+            "año_creacion": 2012,
+            "sinopsis": "La saga de la familia Joestar enfrentando enemigos con poderes sobrenaturales.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Sobrenatural"
+            ],
+            "creador": "Hirohiko Araki",
+            "estudio": "David Production",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Black Clover",
+            "temporadas": 4,
+            "edad_recomendada": "13+",
+            "año_creacion": 2017,
+            "sinopsis": "Asta, un joven sin magia, busca convertirse en el Rey Mago.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Fantasía"
+            ],
+            "creador": "Yūki Tabata",
+            "estudio": "Pierrot",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Code Geass",
+            "temporadas": 2,
+            "edad_recomendada": "16+",
+            "año_creacion": 2006,
+            "sinopsis": "Lelouch obtiene el poder del Geass y lidera una rebelión contra el Imperio de Britannia.",
+            "categoria": [
+                "Acción",
+                "Mecha",
+                "Drama"
+            ],
+            "creador": "Gorō Taniguchi / Ichirō Ōkouchi",
+            "estudio": "Sunrise",
+            "basado_en": "Original"
+        },
+        {
+            "nombre": "Pokémon",
+            "temporadas": 25,
+            "edad_recomendada": "7+",
+            "año_creacion": 1997,
+            "sinopsis": "Ash Ketchum viaja por distintas regiones para convertirse en Maestro Pokémon.",
+            "categoria": [
+                "Aventura",
+                "Shonen",
+                "Fantasía"
+            ],
+            "creador": "Satoshi Tajiri",
+            "estudio": "OLM",
+            "basado_en": "Videojuego"
+        },
+        {
+            "nombre": "Yu-Gi-Oh!",
+            "temporadas": 6,
+            "edad_recomendada": "10+",
+            "año_creacion": 2000,
+            "sinopsis": "Yugi Muto y sus amigos enfrentan duelos de cartas con poderes mágicos.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Juego"
+            ],
+            "creador": "Kazuki Takahashi",
+            "estudio": "Studio Gallop",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Inuyasha",
+            "temporadas": 7,
+            "edad_recomendada": "13+",
+            "año_creacion": 2000,
+            "sinopsis": "Kagome viaja al Japón feudal y se une a Inuyasha para reunir fragmentos de la joya Shikon.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Romance"
+            ],
+            "creador": "Rumiko Takahashi",
+            "estudio": "Sunrise",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Cowboy Bebop",
+            "temporadas": 1,
+            "edad_recomendada": "16+",
+            "año_creacion": 1998,
+            "sinopsis": "Un grupo de cazarrecompensas viaja por el espacio enfrentando criminales y su pasado.",
+            "categoria": [
+                "Acción",
+                "Sci-Fi",
+                "Seinen"
+            ],
+            "creador": "Shinichirō Watanabe",
+            "estudio": "Sunrise",
+            "basado_en": "Original"
+        },
+        {
+            "nombre": "Haikyuu!!",
+            "temporadas": 4,
+            "edad_recomendada": "10+",
+            "año_creacion": 2014,
+            "sinopsis": "Hinata Shoyo sueña con ser un gran jugador de voleibol y se une al equipo Karasuno.",
+            "categoria": [
+                "Deportes",
+                "Shonen",
+                "Comedia"
+            ],
+            "creador": "Haruichi Furudate",
+            "estudio": "Production I.G",
+            "basado_en": "Manga"
+        },
+        {
+            "nombre": "Jujutsu Kaisen",
+            "temporadas": 2,
+            "edad_recomendada": "16+",
+            "año_creacion": 2020,
+            "sinopsis": "Yuji Itadori se convierte en huésped de una maldición poderosa y lucha contra espíritus malignos.",
+            "categoria": [
+                "Acción",
+                "Shonen",
+                "Sobrenatural"
+            ],
+            "creador": "Gege Akutami",
+            "estudio": "MAPPA",
+            "basado_en": "Manga"
+        }
+    ]
+}
