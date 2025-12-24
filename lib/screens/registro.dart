@@ -50,7 +50,7 @@ class _RegistroState extends State<Registro> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              'https://i.postimg.cc/tCrTLPT8/retrato-personaje-anime-estrellas-23-2151556349.avif', // <- tu link de imagen aquí
+              'https://i.postimg.cc/tCrTLPT8/retrato-personaje-anime-estrellas-23-2151556349.avif',
             ),
             fit: BoxFit.cover,
           ),

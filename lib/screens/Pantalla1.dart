@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:proyecto_moviles3/styles/colores.dart';
 import 'package:proyecto_moviles3/styles/decoracion.dart';
@@ -20,12 +22,12 @@ class Pantalla1 extends StatelessWidget {
           style: AppTextos.tituloAppBar,
         ),
       ),
-      body: Vista(),
+      body: Vista(context),
     );
   }
 }
 
-Widget Vista() {
+Widget Vista(context) {
   return SingleChildScrollView(
     child: Container(
       decoration: AppDecoraciones.fondoNegro(),
@@ -45,7 +47,6 @@ Widget Vista() {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
                 Text(
                   "My Hero Academia: Vigilantes",
                   style: AppTextos.tituloPrincipal,
@@ -70,7 +71,7 @@ Widget Vista() {
                   children: [
                     Expanded(
                       child: ElevatedButton.icon(
-                        onPressed: ()=>(),
+                        onPressed: () => (),
                         icon: Icon(
                           Icons.play_arrow,
                           color: AppColores.textoBotonPrimario,
@@ -85,7 +86,7 @@ Widget Vista() {
                     SizedBox(width: 10),
                     Expanded(
                       child: OutlinedButton.icon(
-                        onPressed: ()=>(),
+                        onPressed: () => (),
                         icon: Icon(Icons.add, color: AppColores.blanco),
                         label: Text(
                           "Mi lista",
@@ -133,11 +134,73 @@ Widget Vista() {
                 InfoRow("Estudio:", "Bones"),
                 SizedBox(height: 8),
                 InfoRow("Basado en:", "My Hero Academia de Kōhei Horikoshi"),
+                SizedBox(height: 30),
+                Recomendado(context),
               ],
             ),
           ),
         ],
       ),
     ),
+  );
+}
+
+Future<List> leerListaAnimes(context) async {
+  final jsonString = await DefaultAssetBundle.of(
+    context,
+  ).loadString("assets/data/animes.json");
+  return json.decode(jsonString)['animes'];
+}
+
+Widget Recomendado(context) {
+  return FutureBuilder(
+    future: leerListaAnimes(context),
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        final data = snapshot.data!;
+        final random = Random();
+        final listaMezclada = List.from(data)..shuffle(random);
+
+        final seleccionados = listaMezclada.take(6).toList();
+
+        return SizedBox(
+          height: 250,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: seleccionados.length,
+            itemBuilder: (context, index) {
+              final item = seleccionados[index];
+
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.network(
+                      item['imagen'],
+                      width: 140,
+                      height: 180,
+                      fit: BoxFit.cover,
+                    ),
+                    SizedBox(height: 6),
+                    Text(item['nombre'],
+                        style: TextStyle(color: Colors.white)),
+                    Text(
+                      "Año: ${item['año_creacion']}",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        );
+      } else {
+        return Text(
+          "No hay recomendados disponibles",
+          style: TextStyle(color: Colors.white),
+        );
+      }
+    },
   );
 }

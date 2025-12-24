@@ -1,8 +1,8 @@
 {
-  "top_animes": [
+  "animes": [
     {
       "nombre": "Naruto",
-      "imagen": "https://via.placeholder.com/300x450?text=Naruto",
+      "imagen": "https://i.postimg.cc/h4bFTJkJ/Naruto.jpg",
       "temporadas": 2,
       "edad_recomendada": "13+",
       "año_creacion": 2002,
@@ -14,7 +14,7 @@
     },
     {
       "nombre": "One Piece",
-      "imagen": "https://via.placeholder.com/300x450?text=One+Piece",
+      "imagen": "https://i.postimg.cc/ydmGm5bx/once-pice.jpg",
       "temporadas": 1,
       "edad_recomendada": "13+",
       "año_creacion": 1999,
@@ -26,7 +26,7 @@
     },
     {
       "nombre": "Attack on Titan",
-      "imagen": "https://via.placeholder.com/300x450?text=Attack+on+Titan",
+      "imagen": "https://i.postimg.cc/gjdB0D4k/Attack-on-Titan.webp",
       "temporadas": 4,
       "edad_recomendada": "16+",
       "año_creacion": 2013,
@@ -38,7 +38,7 @@
     },
     {
       "nombre": "Dragon Ball Z",
-      "imagen": "https://via.placeholder.com/300x450?text=Dragon+Ball+Z",
+      "imagen": "https://i.postimg.cc/ZqdfFgMd/Dragon-Ball-Z.jpg",
       "temporadas": 1,
       "edad_recomendada": "13+",
       "año_creacion": 1989,
@@ -50,7 +50,7 @@
     },
     {
       "nombre": "Death Note",
-      "imagen": "https://via.placeholder.com/300x450?text=Death+Note",
+      "imagen": "https://i.postimg.cc/90J1Qjr1/Death-Note.jpg",
       "temporadas": 1,
       "edad_recomendada": "16+",
       "año_creacion": 2006,
@@ -62,7 +62,7 @@
     },
     {
       "nombre": "Fullmetal Alchemist: Brotherhood",
-      "imagen": "https://via.placeholder.com/300x450?text=FMA+Brotherhood",
+      "imagen": "https://i.postimg.cc/XYZx4m3F/Fullmetal-Alchemist-Brotherhood.jpg",
       "temporadas": 1,
       "edad_recomendada": "15+",
       "año_creacion": 2009,
@@ -74,7 +74,7 @@
     },
     {
       "nombre": "My Hero Academia",
-      "imagen": "https://via.placeholder.com/300x450?text=My+Hero+Academia",
+      "imagen": "https://i.postimg.cc/26x70fFD/My-Hero-Academia.jpg",
       "temporadas": 6,
       "edad_recomendada": "13+",
       "año_creacion": 2016,
@@ -86,7 +86,7 @@
     },
     {
       "nombre": "Demon Slayer",
-      "imagen": "https://via.placeholder.com/300x450?text=Demon+Slayer",
+      "imagen": "https://i.postimg.cc/QxCJJwBL/Demon-Slayer.webp",
       "temporadas": 3,
       "edad_recomendada": "15+",
       "año_creacion": 2019,
@@ -98,7 +98,7 @@
     },
     {
       "nombre": "Bleach",
-      "imagen": "https://via.placeholder.com/300x450?text=Bleach",
+      "imagen": "https://i.postimg.cc/LsKkRsxs/Bleach.jpg",
       "temporadas": 16,
       "edad_recomendada": "13+",
       "año_creacion": 2004,
@@ -110,7 +110,7 @@
     },
     {
       "nombre": "Jujutsu Kaisen",
-      "imagen": "https://via.placeholder.com/300x450?text=Jujutsu+Kaisen",
+      "imagen": "https://i.postimg.cc/wMvLFRjk/Jujutsu-Kaisen.webp",
       "temporadas": 2,
       "edad_recomendada": "16+",
       "año_creacion": 2020,
@@ -123,7 +123,7 @@
 
     {
       "nombre": "Chainsaw Man",
-      "imagen": "https://via.placeholder.com/300x450?text=Chainsaw+Man",
+      "imagen": "https://i.postimg.cc/MGSBNFGR/Chainsaw-Man.jpg",
       "temporadas": 1,
       "edad_recomendada": "18+",
       "año_creacion": 2022,
@@ -135,7 +135,7 @@
     },
     {
       "nombre": "Spy x Family",
-      "imagen": "https://via.placeholder.com/300x450?text=Spy+x+Family",
+      "imagen": "https://i.postimg.cc/1XfVDxvk/Spy-x-Family.jpg",
       "temporadas": 2,
       "edad_recomendada": "10+",
       "año_creacion": 2022,
@@ -147,7 +147,7 @@
     },
     {
       "nombre": "Vinland Saga",
-      "imagen": "https://via.placeholder.com/300x450?text=Vinland+Saga",
+      "imagen": "https://i.postimg.cc/R0dW8CyB/Vinland-Saga.jpg",
       "temporadas": 2,
       "edad_recomendada": "17+",
       "año_creacion": 2019,
@@ -159,7 +159,7 @@
     },
     {
       "nombre": "Blue Lock",
-      "imagen": "https://via.placeholder.com/300x450?text=Blue+Lock",
+      "imagen": "https://i.postimg.cc/MHMXv7T6/Blue-Lock.jpg",
       "temporadas": 1,
       "edad_recomendada": "13+",
       "año_creacion": 2022,
@@ -171,7 +171,7 @@
     },
     {
       "nombre": "Dr. Stone",
-      "imagen": "https://via.placeholder.com/300x450?text=Dr+Stone",
+      "imagen": "https://i.postimg.cc/ZKNCmx25/Dr-Stone.jpg",
       "temporadas": 3,
       "edad_recomendada": "10+",
       "año_creacion": 2019,
@@ -183,7 +183,7 @@
     },
     {
       "nombre": "Steins;Gate",
-      "imagen": "https://via.placeholder.com/300x450?text=Steins;Gate",
+      "imagen": "https://i.postimg.cc/9MzQndyr/Steins-Gate.jpg",
       "temporadas": 1,
       "edad_recomendada": "16+",
       "año_creacion": 2011,
