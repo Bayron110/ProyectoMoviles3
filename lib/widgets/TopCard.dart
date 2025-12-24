@@ -22,20 +22,24 @@ class TopCard extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: Positioned(
-        bottom: 10,
-        left: 10,
-        child: Text(
-          "#$position",
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 26,
-            fontWeight: FontWeight.bold,
-            shadows: [
-              Shadow(color: Colors.black, blurRadius: 8),
-            ],
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 10,
+            left: 10,
+            child: Text(
+              "#$position",
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(color: Colors.black, blurRadius: 8),
+                ],
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

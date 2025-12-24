@@ -11,30 +11,27 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
-  final TextEditingController userController = TextEditingController();
-  final TextEditingController passController = TextEditingController();
+  class _LoginState extends State<Login> {
+  TextEditingController correo = TextEditingController();
+  TextEditingController contrasenia = TextEditingController();
 
   void login() {
-    if (userController.text.isEmpty || passController.text.isEmpty) {
+    if (correo.text.isEmpty || contrasenia.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Completa todos los campos')),
       );
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Bienvenido a AnimeApp 🍥')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Bienvenido a AnimeApp 🍥')));
   }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController correo = TextEditingController();
-    TextEditingController contrasenia = TextEditingController();
     return Scaffold(
       body: Container(
-        
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
@@ -83,14 +80,14 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 25),
 
               ElevatedButton(
-                onPressed: () => login2(correo, contrasenia,context),
+                onPressed: () => login2(correo, contrasenia, context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 234, 196, 196),
                   minimumSize: const Size(double.infinity, 45),
                 ),
                 child: const Text('Entrar'),
               ),
-              
+
               Text(""),
               ElevatedButton(
                 onPressed: () => iraRegistro(context),
@@ -108,10 +105,8 @@ class _LoginState extends State<Login> {
   }
 }
 
-void iraRegistro(context){
-  Navigator.push(context, 
-  MaterialPageRoute(builder: (context) => Registro(),)
-  );
+void iraRegistro(context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => Registro()));
 }
 
 Future<void> login2(correo, contrasenia, context) async {
@@ -137,9 +132,7 @@ Future<void> login2(correo, contrasenia, context) async {
     showAboutDialog(
       context: context,
       applicationName: 'Error de Credenciales',
-      children: [
-        Text(mensajeError),
-      ],
+      children: [Text(mensajeError)],
     );
   }
 }
