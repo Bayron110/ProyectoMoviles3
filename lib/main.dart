@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_moviles3/screens/login.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const HoshiPlay());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+runApp(const HoshiPlay());
 }
 
 class HoshiPlay extends StatelessWidget {
@@ -15,5 +21,5 @@ class HoshiPlay extends StatelessWidget {
       home: Login(),
       
     );
-  }
+  }  
 }

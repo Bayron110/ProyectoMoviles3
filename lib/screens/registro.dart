@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_moviles3/screens/login.dart';
 
@@ -9,23 +11,23 @@ class Registro extends StatefulWidget {
 }
 
 class _RegistroState extends State<Registro> {
-  final TextEditingController usuarioController = TextEditingController();
-  final TextEditingController correoController = TextEditingController();
-  final TextEditingController contrasenaController = TextEditingController();
-  final TextEditingController confirmarController = TextEditingController();
+  final TextEditingController usuario = TextEditingController();
+  final TextEditingController correo = TextEditingController();
+  final TextEditingController contrasenia = TextEditingController();
+  final TextEditingController confirmar = TextEditingController();
 
   void registrar() {
-    if (usuarioController.text.isEmpty ||
-        correoController.text.isEmpty ||
-        contrasenaController.text.isEmpty ||
-        confirmarController.text.isEmpty) {
+    if (usuario.text.isEmpty ||
+        correo.text.isEmpty ||
+        contrasenia.text.isEmpty ||
+        confirmar.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Por favor, completa todos los campos')),
       );
       return;
     }
 
-    if (contrasenaController.text != confirmarController.text) {
+    if (contrasenia.text != confirmar.text) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Las contraseñas no coinciden')),
       );
@@ -35,8 +37,6 @@ class _RegistroState extends State<Registro> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Registro exitoso 🎉')),
     );
-
-    // Ir al Login
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const Login()),
@@ -47,7 +47,6 @@ class _RegistroState extends State<Registro> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // Imagen de fondo desde un link
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
@@ -74,7 +73,7 @@ class _RegistroState extends State<Registro> {
                 const SizedBox(height: 30),
 
                 TextField(
-                  controller: usuarioController,
+                  controller: usuario,
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
                     labelText: 'Usuario',
@@ -85,7 +84,7 @@ class _RegistroState extends State<Registro> {
                 const SizedBox(height: 15),
 
                 TextField(
-                  controller: correoController,
+                  controller: correo,
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
                     labelText: 'Correo electrónico',
@@ -96,7 +95,7 @@ class _RegistroState extends State<Registro> {
                 const SizedBox(height: 15),
 
                 TextField(
-                  controller: contrasenaController,
+                  controller: contrasenia,
                   obscureText: true,
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
@@ -108,7 +107,7 @@ class _RegistroState extends State<Registro> {
                 const SizedBox(height: 15),
 
                 TextField(
-                  controller: confirmarController,
+                  controller: confirmar,
                   obscureText: true,
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
@@ -120,7 +119,7 @@ class _RegistroState extends State<Registro> {
                 const SizedBox(height: 25),
 
                 ElevatedButton(
-                  onPressed: registrar,
+                  onPressed: ()=>registro(usuario, contrasenia, confirmar, correo, context),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.redAccent,
                     minimumSize: const Size(double.infinity, 45),
@@ -145,6 +144,45 @@ class _RegistroState extends State<Registro> {
   }
 }
 
+Future<void> registro(usuario, contrasenia, confirmar, correo, context) async {
+  if (usuario != null) {
+    DatabaseReference ref = FirebaseDatabase.instance.ref("Usuarios/");
+
+    await ref.push().set({
+      "Nombre": usuario.text,
+      "Correo": correo.text,
+    });
+
+    showAdaptiveDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Éxito"),
+          content: const Text("Registro realizado exitosamente"),
+        );
+      },
+    );
+
+    if (correo != null && contrasenia != null) {
+      try {
+        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: correo.text,
+          password: contrasenia.text,
+        );
+         Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('La contraseña es demasiado débil.');
+        } else if (e.code == 'email-already-in-use') {
+          print('Ya existe una cuenta con ese correo.');
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
+  }
+}
+
 void irLogin(context){
-  Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+   Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
 }
