@@ -5,6 +5,7 @@ import 'package:proyecto_moviles3/styles/decoracion.dart';
 import 'package:proyecto_moviles3/styles/textos.dart';
 import 'package:proyecto_moviles3/widgets/contadorR.dart';
 import 'package:proyecto_moviles3/widgets/widgets_Pantalla1/informacionP1.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Pantalla6 extends StatelessWidget {
   const Pantalla6({super.key});
@@ -16,10 +17,7 @@ class Pantalla6 extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColores.fondoNegro,
         elevation: 0,
-        title: Text(
-          "Sakamoto Days",
-          style: AppTextos.tituloAppBar,
-        ),
+        title: Text("Sakamoto Days", style: AppTextos.tituloAppBar),
       ),
       body: Vista(context),
     );
@@ -48,10 +46,7 @@ Widget Vista(context) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Título
-                Text(
-                  "Sakamoto Days",
-                  style: AppTextos.tituloPrincipal,
-                ),
+                Text("Sakamoto Days", style: AppTextos.tituloPrincipal),
                 const SizedBox(height: 12),
 
                 // Metadatos
@@ -78,7 +73,14 @@ Widget Vista(context) {
                   children: [
                     Expanded(
                       child: ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VideoWidget(),
+                            ),
+                          );
+                        },
                         icon: Icon(
                           Icons.play_arrow,
                           color: AppColores.textoBotonPrimario,
@@ -108,9 +110,7 @@ Widget Vista(context) {
 
                 // Contador
                 ContadorRegresivo(
-                  fechaObjetivo: DateTime.now().add(
-                    const Duration(days: 5),
-                  ),
+                  fechaObjetivo: DateTime.now().add(const Duration(days: 5)),
                   titulo: "Estreno en:",
                 ),
                 const SizedBox(height: 20),
@@ -146,7 +146,7 @@ Widget Vista(context) {
                 InfoRow("Estudio:", "TMS Entertainment"),
                 const SizedBox(height: 8),
                 InfoRow("Basado en:", "Manga Sakamoto Days"),
-                Recomendado(context)
+                Recomendado(context),
               ],
             ),
           ),
@@ -154,4 +154,57 @@ Widget Vista(context) {
       ),
     ),
   );
+}
+
+class VideoWidget extends StatefulWidget {
+  const VideoWidget({super.key});
+
+  @override
+  State<VideoWidget> createState() => _VideoWidgetState();
+}
+
+class _VideoWidgetState extends State<VideoWidget> {
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    final videoId = YoutubePlayer.convertUrlToId(
+      "https://www.youtube.com/watch?v=xgCxY0qWRC4",
+    );
+    if (videoId == null) throw Exception("ID del video no válido");
+
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId,
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+        enableCaption: false,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Reproducción de Video"),
+        backgroundColor: AppColores.fondoNegro,
+      ),
+      backgroundColor: AppColores.fondoNegro,
+      body: Center(
+        child: YoutubePlayer(
+          controller: _controller,
+          showVideoProgressIndicator: true,
+          progressIndicatorColor: Colors.red,
+        ),
+      ),
+    );
+  }
 }

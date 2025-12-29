@@ -4,7 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:proyecto_moviles3/screens/login.dart';
 
 class DatosUsuario extends StatefulWidget {
-  const DatosUsuario({super.key});
+  const DatosUsuario(void Function() cambiarTema, bool oscuro, {super.key});
 
   @override
   State<DatosUsuario> createState() => _DatosUsuarioState();
@@ -17,6 +17,13 @@ class _DatosUsuarioState extends State<DatosUsuario> {
 
   final User? usuario = FirebaseAuth.instance.currentUser;
 
+  bool oscuro = false;
+
+  void cambiarTema() {
+    setState(() {
+      oscuro = !oscuro;
+    });
+  }
 
   Future<void> agregarComentario() async {
     if (comentarioController.text.trim().isEmpty || usuario == null) return;
@@ -71,7 +78,6 @@ class _DatosUsuarioState extends State<DatosUsuario> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     if (usuario == null) {
@@ -80,28 +86,38 @@ class _DatosUsuarioState extends State<DatosUsuario> {
       );
     }
 
-    return Scaffold(
-      appBar: appBarPrincipal(),
-      body: Column(
-        children: [
-          perfilUsuario(usuario!),
-          cajaComentario(),
-          const SizedBox(height: 10),
-          listaComentarios(),
-        ],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: oscuro ? ThemeData.dark() : ThemeData.light(),
+      home: Scaffold(
+        appBar: appBarPrincipal(),
+        body: Column(
+          children: [
+            perfilUsuario(usuario!),
+            cajaComentario(),
+            const SizedBox(height: 10),
+            listaComentarios(),
+          ],
+        ),
       ),
     );
   }
 
-
   AppBar appBarPrincipal() {
     return AppBar(
-      title: const Text("Perfil"),
+      title: Text("Perfil"),
       actions: [
+        IconButton(
+          icon: oscuro
+              ? const Icon(Icons.dark_mode)
+              : const Icon(Icons.light_mode),
+          onPressed: cambiarTema,
+        ),
         IconButton(
           icon: const Icon(Icons.logout),
           onPressed: cerrarSesion,
         ),
+        IconButton(onPressed: ()=>volver(context) , icon: Icon(Icons.volunteer_activism_rounded))
       ],
     );
   }
@@ -215,4 +231,7 @@ class _DatosUsuarioState extends State<DatosUsuario> {
       ),
     );
   }
+}
+void volver(context) {
+  Navigator.pop(context);
 }

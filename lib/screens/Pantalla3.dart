@@ -6,6 +6,7 @@ import 'package:proyecto_moviles3/styles/decoracion.dart';
 import 'package:proyecto_moviles3/styles/textos.dart';
 import 'package:proyecto_moviles3/widgets/contadorR.dart';
 import 'package:proyecto_moviles3/widgets/widgets_Pantalla1/informacionP1.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Pantalla3 extends StatelessWidget {
   const Pantalla3({super.key});
@@ -72,7 +73,14 @@ Widget VistaPantalla3(context) {
                   children: [
                     Expanded(
                       child: ElevatedButton.icon(
-                        onPressed: () => (),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VideoWidget(),
+                            ),
+                          );
+                        },
                         icon: Icon(
                           Icons.play_arrow,
                           color: AppColores.textoBotonPrimario,
@@ -204,3 +212,54 @@ Widget RecomendadoPantalla3(context) {
     },
   );
 }
+class VideoWidget extends StatefulWidget {
+  const VideoWidget({super.key});
+
+  @override
+  State<VideoWidget> createState() => _VideoWidgetState();
+}
+
+class _VideoWidgetState extends State<VideoWidget> {
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    final videoId = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=xgCxY0qWRC4");
+    if (videoId == null) throw Exception("ID del video no válido");
+
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId,
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+        enableCaption: false,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Reproducción de Video"),
+        backgroundColor: AppColores.fondoNegro,
+      ),
+      backgroundColor: AppColores.fondoNegro,
+      body: Center(
+        child: YoutubePlayer(
+          controller: _controller,
+          showVideoProgressIndicator: true,
+          progressIndicatorColor: Colors.red,
+        ),
+      ),
+    );
+  }
+}
+
