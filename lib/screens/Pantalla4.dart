@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_moviles3/screens/Pantalla1.dart';
 import 'package:proyecto_moviles3/styles/colores.dart';
 import 'package:proyecto_moviles3/styles/decoracion.dart';
 import 'package:proyecto_moviles3/styles/textos.dart';
@@ -20,12 +21,12 @@ class Pantalla4 extends StatelessWidget {
           style: AppTextos.tituloAppBar,
         ),
       ),
-      body: Vista(),
+      body: Vista(context),
     );
   }
 }
 
-Widget Vista() {
+Widget Vista(context) {
   return SingleChildScrollView(
     child: Container(
       decoration: AppDecoraciones.fondoNegro(),
@@ -145,6 +146,7 @@ Widget Vista() {
                 InfoRow("Estudio:", "Toei Animation"),
                 const SizedBox(height: 8),
                 InfoRow("Basado en:", "Manga Dragon Ball"),
+                Recomendado(context)
               ],
             ),
           ),

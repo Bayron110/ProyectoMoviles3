@@ -6,6 +6,7 @@ import 'package:proyecto_moviles3/styles/decoracion.dart';
 import 'package:proyecto_moviles3/styles/textos.dart';
 import 'package:proyecto_moviles3/widgets/contadorR.dart';
 import 'package:proyecto_moviles3/widgets/widgets_Pantalla1/informacionP1.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Pantalla1 extends StatelessWidget {
   const Pantalla1({super.key});
@@ -41,7 +42,6 @@ Widget Vista(context) {
               "https://i.postimg.cc/Qx54tMXM/latest-cb-20210104051630-path-prefix-es.webp",
             ),
           ),
-
           Padding(
             padding: EdgeInsets.all(20),
             child: Column(
@@ -52,7 +52,6 @@ Widget Vista(context) {
                   style: AppTextos.tituloPrincipal,
                 ),
                 SizedBox(height: 12),
-
                 Row(
                   children: [
                     Container(
@@ -71,7 +70,14 @@ Widget Vista(context) {
                   children: [
                     Expanded(
                       child: ElevatedButton.icon(
-                        onPressed: () => (),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VideoWidget(),
+                            ),
+                          );
+                        },
                         icon: Icon(
                           Icons.play_arrow,
                           color: AppColores.textoBotonPrimario,
@@ -86,7 +92,7 @@ Widget Vista(context) {
                     SizedBox(width: 10),
                     Expanded(
                       child: OutlinedButton.icon(
-                        onPressed: () => (),
+                        onPressed: () {}, // ✅ Corregido
                         icon: Icon(Icons.add, color: AppColores.blanco),
                         label: Text(
                           "Mi lista",
@@ -98,15 +104,11 @@ Widget Vista(context) {
                   ],
                 ),
                 SizedBox(height: 20),
-
                 ContadorRegresivo(
-                  fechaObjetivo: DateTime.now().add(
-                    Duration(days: 7, hours: 3),
-                  ),
+                  fechaObjetivo: DateTime.now().add(Duration(days: 7, hours: 3)),
                   titulo: "Nuevo episodio en:",
                 ),
                 SizedBox(height: 20),
-
                 Text(
                   "My Hero Academia: Vigilantes sigue la historia de Koichi Haimawari, "
                   "un joven sin licencia de héroe que ayuda a la gente en secreto. "
@@ -116,7 +118,6 @@ Widget Vista(context) {
                   style: AppTextos.textoNormal,
                 ),
                 SizedBox(height: 20),
-
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
@@ -128,7 +129,6 @@ Widget Vista(context) {
                   ],
                 ),
                 SizedBox(height: 30),
-
                 InfoRow("Creador:", "Hideyuki Furuhashi"),
                 SizedBox(height: 8),
                 InfoRow("Estudio:", "Bones"),
@@ -146,9 +146,7 @@ Widget Vista(context) {
 }
 
 Future<List> leerListaAnimes(context) async {
-  final jsonString = await DefaultAssetBundle.of(
-    context,
-  ).loadString("assets/data/animes.json");
+  final jsonString = await DefaultAssetBundle.of(context).loadString("assets/data/animes.json");
   return json.decode(jsonString)['animes'];
 }
 
@@ -160,7 +158,6 @@ Widget Recomendado(context) {
         final data = snapshot.data!;
         final random = Random();
         final listaMezclada = List.from(data)..shuffle(random);
-
         final seleccionados = listaMezclada.take(6).toList();
 
         return SizedBox(
@@ -170,7 +167,6 @@ Widget Recomendado(context) {
             itemCount: seleccionados.length,
             itemBuilder: (context, index) {
               final item = seleccionados[index];
-
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -183,8 +179,7 @@ Widget Recomendado(context) {
                       fit: BoxFit.cover,
                     ),
                     SizedBox(height: 6),
-                    Text(item['nombre'],
-                        style: TextStyle(color: Colors.white)),
+                    Text(item['nombre'], style: TextStyle(color: Colors.white)),
                     Text(
                       "Año: ${item['año_creacion']}",
                       style: TextStyle(color: Colors.grey),
@@ -203,4 +198,58 @@ Widget Recomendado(context) {
       }
     },
   );
+}
+
+// ========================================
+// REPRODUCTOR DE VIDEO
+// ========================================
+class VideoWidget extends StatefulWidget {
+  const VideoWidget({super.key});
+
+  @override
+  State<VideoWidget> createState() => _VideoWidgetState();
+}
+
+class _VideoWidgetState extends State<VideoWidget> {
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    final videoId = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=qGc8LNme6qg");
+    if (videoId == null) throw Exception("ID del video no válido");
+
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId,
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+        enableCaption: false,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Reproducción de Video"),
+        backgroundColor: AppColores.fondoNegro,
+      ),
+      backgroundColor: AppColores.fondoNegro,
+      body: Center(
+        child: YoutubePlayer(
+          controller: _controller,
+          showVideoProgressIndicator: true,
+          progressIndicatorColor: Colors.red,
+        ),
+      ),
+    );
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_moviles3/screens/Pantalla1.dart';
 import 'package:proyecto_moviles3/styles/colores.dart';
 import 'package:proyecto_moviles3/styles/decoracion.dart';
 import 'package:proyecto_moviles3/styles/textos.dart';
@@ -20,12 +21,12 @@ class Pantalla6 extends StatelessWidget {
           style: AppTextos.tituloAppBar,
         ),
       ),
-      body: Vista(),
+      body: Vista(context),
     );
   }
 }
 
-Widget Vista() {
+Widget Vista(context) {
   return SingleChildScrollView(
     child: Container(
       decoration: AppDecoraciones.fondoNegro(),
@@ -140,12 +141,12 @@ Widget Vista() {
                 ),
                 const SizedBox(height: 30),
 
-                // Información adicional
                 InfoRow("Creador:", "Yuto Suzuki"),
                 const SizedBox(height: 8),
                 InfoRow("Estudio:", "TMS Entertainment"),
                 const SizedBox(height: 8),
                 InfoRow("Basado en:", "Manga Sakamoto Days"),
+                Recomendado(context)
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_moviles3/screens/Pantalla1.dart';
 import 'package:proyecto_moviles3/styles/colores.dart';
 import 'package:proyecto_moviles3/styles/decoracion.dart';
 import 'package:proyecto_moviles3/styles/textos.dart';
@@ -20,12 +21,12 @@ class Pantalla5 extends StatelessWidget {
           style: AppTextos.tituloAppBar,
         ),
       ),
-      body: Vista(),
+      body: Vista(context),
     );
   }
 }
 
-Widget Vista() {
+Widget Vista(context) {
   return SingleChildScrollView(
     child: Container(
       decoration: AppDecoraciones.fondoNegro(),
@@ -143,6 +144,7 @@ Widget Vista() {
                 InfoRow("Estudio:", "White Fox"),
                 const SizedBox(height: 8),
                 InfoRow("Basado en:", "Novela ligera RE:ZERO"),
+                Recomendado(context)
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_moviles3/screens/Pantalla1.dart';
 import 'package:proyecto_moviles3/styles/colores.dart';
 import 'package:proyecto_moviles3/styles/decoracion.dart';
 import 'package:proyecto_moviles3/styles/textos.dart';
@@ -17,12 +18,12 @@ class Pantalla2 extends StatelessWidget {
         elevation: 0,
         title: Text("Tobe Hero X", style: AppTextos.tituloAppBar),
       ),
-      body: Vista(),
+      body: Vista(context),
     );
   }
 }
 
-Widget Vista() {
+Widget Vista(context) {
   return SingleChildScrollView(
     child: Container(
       decoration: AppDecoraciones.fondoNegro(),
@@ -122,6 +123,7 @@ Widget Vista() {
                 InfoRow("Estudio:", "Pb Animation Co. Ltd., Studio LAN, Paper Plane Animation Studio"),
                 SizedBox(height: 8),
                 InfoRow("Basado en:", "Historia 100% Original con ecenas de Violencia"),
+                Recomendado(context)
               ],
             ),
           ),

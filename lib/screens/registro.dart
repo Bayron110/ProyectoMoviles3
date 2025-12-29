@@ -34,9 +34,9 @@ class _RegistroState extends State<Registro> {
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Registro exitoso 🎉')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Registro exitoso 🎉')));
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const Login()),
@@ -119,7 +119,13 @@ class _RegistroState extends State<Registro> {
                 const SizedBox(height: 25),
 
                 ElevatedButton(
-                  onPressed: ()=>registro(usuario, contrasenia, confirmar, correo, context),
+                  onPressed: () => registro(
+                    usuario,
+                    contrasenia,
+                    confirmar,
+                    correo,
+                    context,
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.redAccent,
                     minimumSize: const Size(double.infinity, 45),
@@ -128,7 +134,7 @@ class _RegistroState extends State<Registro> {
                 ),
                 Text(""),
                 ElevatedButton(
-                  onPressed: ()=>irLogin(context),
+                  onPressed: () => irLogin(context),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.redAccent,
                     minimumSize: const Size(double.infinity, 45),
@@ -148,10 +154,7 @@ Future<void> registro(usuario, contrasenia, confirmar, correo, context) async {
   if (usuario != null) {
     DatabaseReference ref = FirebaseDatabase.instance.ref("Usuarios/");
 
-    await ref.push().set({
-      "Nombre": usuario.text,
-      "Correo": correo.text,
-    });
+    await ref.push().set({"Nombre": usuario.text, "Correo": correo.text});
 
     showAdaptiveDialog(
       context: context,
@@ -165,11 +168,15 @@ Future<void> registro(usuario, contrasenia, confirmar, correo, context) async {
 
     if (correo != null && contrasenia != null) {
       try {
-        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: correo.text,
-          password: contrasenia.text,
+        final credential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: correo.text,
+              password: contrasenia.text,
+            );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Login()),
         );
-         Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           print('La contraseña es demasiado débil.');
@@ -183,6 +190,6 @@ Future<void> registro(usuario, contrasenia, confirmar, correo, context) async {
   }
 }
 
-void irLogin(context){
-   Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+void irLogin(context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_moviles3/screens/Dusuario.dart';
 import 'package:proyecto_moviles3/widgets/Recomendados.dart';
 import 'package:proyecto_moviles3/widgets/TopSection.dart';
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,11 +32,22 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.person, color: Colors.white),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const DatosUsuario()),
+                );
+              },
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               SizedBox(height: 20),
               TopSection(),
               SizedBox(height: 30),
