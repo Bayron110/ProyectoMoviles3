@@ -92,7 +92,7 @@ Widget Vista(context) {
                     SizedBox(width: 10),
                     Expanded(
                       child: OutlinedButton.icon(
-                        onPressed: () {}, // ✅ Corregido
+                        onPressed: () {}, 
                         icon: Icon(Icons.add, color: AppColores.blanco),
                         label: Text(
                           "Mi lista",
@@ -200,9 +200,6 @@ Widget Recomendado(context) {
   );
 }
 
-// ========================================
-// REPRODUCTOR DE VIDEO
-// ========================================
 class VideoWidget extends StatefulWidget {
   const VideoWidget({super.key});
 
@@ -216,7 +213,7 @@ class _VideoWidgetState extends State<VideoWidget> {
   @override
   void initState() {
     super.initState();
-    final videoId = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=qGc8LNme6qg");
+    final videoId = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=xgCxY0qWRC4");
     if (videoId == null) throw Exception("ID del video no válido");
 
     _controller = YoutubePlayerController(
