@@ -5,12 +5,11 @@ import 'package:proyecto_moviles3/styles/colores.dart';
 import 'package:proyecto_moviles3/styles/decoracion.dart';
 import 'package:proyecto_moviles3/styles/textos.dart';
 import 'package:proyecto_moviles3/widgets/contadorR.dart';
+import 'package:proyecto_moviles3/widgets/minR.dart';
 import 'package:proyecto_moviles3/widgets/widgets_Pantalla1/informacionP1.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 class Pantalla1 extends StatelessWidget {
   const Pantalla1({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +26,6 @@ class Pantalla1 extends StatelessWidget {
     );
   }
 }
-
 Widget Vista(context) {
   return SingleChildScrollView(
     child: Container(
@@ -144,12 +142,10 @@ Widget Vista(context) {
     ),
   );
 }
-
 Future<List> leerListaAnimes(context) async {
   final jsonString = await DefaultAssetBundle.of(context).loadString("assets/data/animes.json");
   return json.decode(jsonString)['animes'];
 }
-
 Widget Recomendado(context) {
   return FutureBuilder(
     future: leerListaAnimes(context),
@@ -209,37 +205,61 @@ class VideoWidget extends StatefulWidget {
 
 class _VideoWidgetState extends State<VideoWidget> {
   late YoutubePlayerController _controller;
+  late String videoId;
 
   @override
   void initState() {
     super.initState();
-    final videoId = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=xgCxY0qWRC4");
-    if (videoId == null) throw Exception("ID del video no válido");
+
+    videoId = YoutubePlayer.convertUrlToId(
+      "https://www.youtube.com/watch?v=xgCxY0qWRC4",
+    )!;
 
     _controller = YoutubePlayerController(
       initialVideoId: videoId,
       flags: const YoutubePlayerFlags(
         autoPlay: true,
         mute: false,
-        enableCaption: false,
       ),
     );
   }
 
+  void minimizarVideo() {
+    MiniPlayer.mostrar(context, videoId);
+    Navigator.pop(context);
+  }
+
+  void cerrarVideo() {
+    _controller.pause();
+    Navigator.pop(context);
+  }
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Reproducción de Video"),
-        backgroundColor: AppColores.fondoNegro,
-      ),
       backgroundColor: AppColores.fondoNegro,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.keyboard_arrow_down, size: 30),
+          onPressed: minimizarVideo,
+        ),
+        title: const Text(
+          "Reproduciendo",
+          style: TextStyle(color: Colors.white),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: cerrarVideo,
+          ),
+        ],
+      ),
       body: Center(
         child: YoutubePlayer(
           controller: _controller,

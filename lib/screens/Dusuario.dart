@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:proyecto_moviles3/screens/Recomendadci%C3%B3nU.dart';
+import 'package:proyecto_moviles3/screens/homes.dart';
 import 'package:proyecto_moviles3/screens/login.dart';
 
 class DatosUsuario extends StatefulWidget {
-  const DatosUsuario(void Function() cambiarTema, bool oscuro, {super.key});
+  const DatosUsuario({super.key});
 
   @override
   State<DatosUsuario> createState() => _DatosUsuarioState();
@@ -90,7 +92,23 @@ class _DatosUsuarioState extends State<DatosUsuario> {
       debugShowCheckedModeBanner: false,
       theme: oscuro ? ThemeData.dark() : ThemeData.light(),
       home: Scaffold(
-        appBar: appBarPrincipal(),
+        appBar: AppBar(
+          title: const Text("Perfil"),
+          actions: [
+            IconButton(
+              icon: Icon(
+                oscuro ? Icons.dark_mode : Icons.light_mode,
+              ),
+              onPressed: cambiarTema,
+            ),
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: cerrarSesion,
+            ),
+            IconButton(onPressed: ()=>votar(), icon: Icon(Icons.how_to_vote)),
+            IconButton(onPressed: ()=>volver(), icon: Icon(Icons.arrow_back_ios_new_rounded)),
+          ],
+        ),
         body: Column(
           children: [
             perfilUsuario(usuario!),
@@ -102,32 +120,17 @@ class _DatosUsuarioState extends State<DatosUsuario> {
       ),
     );
   }
-
-  AppBar appBarPrincipal() {
-    return AppBar(
-      title: Text("Perfil"),
-      actions: [
-        IconButton(
-          icon: oscuro
-              ? const Icon(Icons.dark_mode)
-              : const Icon(Icons.light_mode),
-          onPressed: cambiarTema,
-        ),
-        IconButton(
-          icon: const Icon(Icons.logout),
-          onPressed: cerrarSesion,
-        ),
-        IconButton(onPressed: ()=>volver(context) , icon: Icon(Icons.volunteer_activism_rounded))
-      ],
-    );
-  }
-
+void votar(){
+  Navigator.push(context, MaterialPageRoute(builder: (context) => RecomendacionU(),));
+}
+void volver(){
+Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+}
   Widget perfilUsuario(User usuario) {
     final inicial = usuario.email![0].toUpperCase();
 
     return Card(
       margin: const EdgeInsets.all(16),
-      elevation: 4,
       child: ListTile(
         leading: CircleAvatar(
           radius: 26,
@@ -173,8 +176,8 @@ class _DatosUsuarioState extends State<DatosUsuario> {
             return const Center(child: Text("No hay comentarios"));
           }
 
-          final Map<dynamic, dynamic> data =
-              snapshot.data!.snapshot.value as Map<dynamic, dynamic>;
+          final Map data =
+              snapshot.data!.snapshot.value as Map;
 
           final comentarios = data.entries.toList();
 
@@ -183,13 +186,34 @@ class _DatosUsuarioState extends State<DatosUsuario> {
             itemBuilder: (context, index) {
               final key = comentarios[index].key;
               final comentario = comentarios[index].value;
-
               final esDuenio = comentario["uid"] == usuario!.uid;
 
-              return tarjetaComentario(
-                key: key,
-                comentario: comentario,
-                esDuenio: esDuenio,
+              return Card(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                child: ListTile(
+                  title: Text(comentario["comentario"]),
+                  subtitle: Text(
+                    "${comentario["nombre"]} • ${comentario["fecha"]}",
+                  ),
+                  trailing: esDuenio
+                      ? PopupMenuButton(
+                          itemBuilder: (_) => const [
+                            PopupMenuItem(
+                                value: "editar", child: Text("Editar")),
+                            PopupMenuItem(
+                                value: "eliminar", child: Text("Eliminar")),
+                          ],
+                          onSelected: (value) {
+                            if (value == "editar") {
+                              editarComentario(
+                                  key, comentario["comentario"]);
+                            } else {
+                              eliminarComentario(key);
+                            }
+                          },
+                        )
+                      : null,
+                ),
               );
             },
           );
@@ -197,41 +221,4 @@ class _DatosUsuarioState extends State<DatosUsuario> {
       ),
     );
   }
-
-  Widget tarjetaComentario({
-    required String key,
-    required Map comentario,
-    required bool esDuenio,
-  }) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      child: ListTile(
-        leading: CircleAvatar(
-          child: Text(comentario["nombre"][0].toUpperCase()),
-        ),
-        title: Text(comentario["comentario"]),
-        subtitle: Text(
-          "${comentario["nombre"]} • ${comentario["fecha"]}",
-        ),
-        trailing: esDuenio
-            ? PopupMenuButton(
-                itemBuilder: (_) => const [
-                  PopupMenuItem(value: "editar", child: Text("Editar")),
-                  PopupMenuItem(value: "eliminar", child: Text("Eliminar")),
-                ],
-                onSelected: (value) {
-                  if (value == "editar") {
-                    editarComentario(key, comentario["comentario"]);
-                  } else {
-                    eliminarComentario(key);
-                  }
-                },
-              )
-            : null,
-      ),
-    );
-  }
-}
-void volver(context) {
-  Navigator.pop(context);
 }
