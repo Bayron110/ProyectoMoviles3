@@ -6,7 +6,7 @@ import 'package:proyecto_moviles3/styles/textos.dart';
 import 'package:proyecto_moviles3/widgets/contadorR.dart';
 import 'package:proyecto_moviles3/widgets/minR.dart';
 import 'package:proyecto_moviles3/widgets/widgets_Pantalla1/informacionP1.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:video_player/video_player.dart';
 
 class Pantalla6 extends StatelessWidget {
   const Pantalla6({super.key});
@@ -32,7 +32,6 @@ Widget Vista(context) {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Imagen principal
           Container(
             width: double.infinity,
             height: 400,
@@ -46,11 +45,9 @@ Widget Vista(context) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Título
                 Text("Sakamoto Days", style: AppTextos.tituloPrincipal),
                 const SizedBox(height: 12),
 
-                // Metadatos
                 Row(
                   children: [
                     Container(
@@ -68,8 +65,6 @@ Widget Vista(context) {
                   ],
                 ),
                 const SizedBox(height: 20),
-
-                // Botones
                 Row(
                   children: [
                     Expanded(
@@ -94,29 +89,15 @@ Widget Vista(context) {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.add, color: AppColores.blanco),
-                        label: Text(
-                          "Mi lista",
-                          style: AppTextos.textoBotonSecundario,
-                        ),
-                        style: AppDecoraciones.botonSecundario(),
-                      ),
-                    ),
+                    
                   ],
                 ),
                 const SizedBox(height: 20),
-
-                // Contador
                 ContadorRegresivo(
                   fechaObjetivo: DateTime.now().add(const Duration(days: 5)),
                   titulo: "Estreno en:",
                 ),
                 const SizedBox(height: 20),
-
-                // Descripción
                 Text(
                   "Sakamoto Days narra la historia de Taro Sakamoto, "
                   "un legendario asesino a sueldo que decide retirarse "
@@ -129,7 +110,6 @@ Widget Vista(context) {
                 ),
                 const SizedBox(height: 20),
 
-                // Géneros
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
@@ -165,28 +145,25 @@ class VideoWidget extends StatefulWidget {
 }
 
 class _VideoWidgetState extends State<VideoWidget> {
-  late YoutubePlayerController _controller;
-  late String videoId;
+  late VideoPlayerController _controller;
+
+  final String videoUrl =
+      "https://www.dropbox.com/scl/fi/5rw4c2gmhexb8b0x97pgg/WhatsApp-Video-2025-12-30-at-6.14.27-PM.mp4?rlkey=79h08d83cx9cw7bw3zp943u4q&st=92shzj0n&raw=1";
 
   @override
   void initState() {
     super.initState();
 
-    videoId = YoutubePlayer.convertUrlToId(
-      "https://www.youtube.com/watch?v=xgCxY0qWRC4",
-    )!;
-
-    _controller = YoutubePlayerController(
-      initialVideoId: videoId,
-      flags: const YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-      ),
-    );
+    _controller = VideoPlayerController.networkUrl(
+      Uri.parse(videoUrl),
+    )..initialize().then((_) {
+        setState(() {});
+        _controller.play();
+      });
   }
 
   void minimizarVideo() {
-    MiniPlayer.mostrar(context, videoId);
+    MiniPlayer.mostrarVideo(context, videoUrl);
     Navigator.pop(context);
   }
 
@@ -194,11 +171,13 @@ class _VideoWidgetState extends State<VideoWidget> {
     _controller.pause();
     Navigator.pop(context);
   }
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -222,11 +201,12 @@ class _VideoWidgetState extends State<VideoWidget> {
         ],
       ),
       body: Center(
-        child: YoutubePlayer(
-          controller: _controller,
-          showVideoProgressIndicator: true,
-          progressIndicatorColor: Colors.red,
-        ),
+        child: _controller.value.isInitialized
+            ? AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              )
+            : const CircularProgressIndicator(color: Colors.white),
       ),
     );
   }

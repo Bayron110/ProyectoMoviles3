@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:proyecto_moviles3/screens/homes.dart';
 import 'package:proyecto_moviles3/screens/registro.dart';
 

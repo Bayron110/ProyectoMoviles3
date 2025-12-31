@@ -4,8 +4,9 @@ import 'package:proyecto_moviles3/styles/colores.dart';
 import 'package:proyecto_moviles3/styles/decoracion.dart';
 import 'package:proyecto_moviles3/styles/textos.dart';
 import 'package:proyecto_moviles3/widgets/contadorR.dart';
+import 'package:proyecto_moviles3/widgets/minR.dart';
 import 'package:proyecto_moviles3/widgets/widgets_Pantalla1/informacionP1.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:video_player/video_player.dart';
 
 class Pantalla2 extends StatelessWidget {
   const Pantalla2({super.key});
@@ -83,17 +84,7 @@ Widget Vista(context) {
                       ),
                     ),
                     SizedBox(width: 10),
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () => (),
-                        icon: Icon(Icons.add, color: AppColores.blanco),
-                        label: Text(
-                          "Mi Lista",
-                          style: AppTextos.textoBotonSecundario,
-                        ),
-                        style: AppDecoraciones.botonSecundario(),
-                      ),
-                    ),
+                    
                   ],
                 ),
                 SizedBox(height: 20),
@@ -149,22 +140,31 @@ class VideoWidget extends StatefulWidget {
 }
 
 class _VideoWidgetState extends State<VideoWidget> {
-  late YoutubePlayerController _controller;
+  late VideoPlayerController _controller;
+
+  final String videoUrl =
+      "https://www.dropbox.com/scl/fi/cynwuqrka8ithdxmx9ntr/WhatsApp-Video-2025-12-30-at-6.00.07-PM.mp4?rlkey=azlamc7hp005t58xslin19uwt&st=c9cwj4st&raw=1";
 
   @override
   void initState() {
     super.initState();
-    final videoId = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=xgCxY0qWRC4");
-    if (videoId == null) throw Exception("ID del video no válido");
 
-    _controller = YoutubePlayerController(
-      initialVideoId: videoId,
-      flags: const YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-        enableCaption: false,
-      ),
-    );
+    _controller = VideoPlayerController.networkUrl(
+      Uri.parse(videoUrl),
+    )..initialize().then((_) {
+        setState(() {});
+        _controller.play();
+      });
+  }
+
+  void minimizarVideo() {
+    MiniPlayer.mostrarVideo(context, videoUrl);
+    Navigator.pop(context);
+  }
+
+  void cerrarVideo() {
+    _controller.pause();
+    Navigator.pop(context);
   }
 
   @override
@@ -176,17 +176,32 @@ class _VideoWidgetState extends State<VideoWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Reproducción de Video"),
-        backgroundColor: AppColores.fondoNegro,
-      ),
       backgroundColor: AppColores.fondoNegro,
-      body: Center(
-        child: YoutubePlayer(
-          controller: _controller,
-          showVideoProgressIndicator: true,
-          progressIndicatorColor: Colors.red,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.keyboard_arrow_down, size: 30),
+          onPressed: minimizarVideo,
         ),
+        title: const Text(
+          "Reproduciendo",
+          style: TextStyle(color: Colors.white),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: cerrarVideo,
+          ),
+        ],
+      ),
+      body: Center(
+        child: _controller.value.isInitialized
+            ? AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              )
+            : const CircularProgressIndicator(color: Colors.white),
       ),
     );
   }
